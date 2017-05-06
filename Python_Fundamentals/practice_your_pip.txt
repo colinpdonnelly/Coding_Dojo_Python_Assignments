@@ -1,0 +1,20 @@
+1. pip install Django
+  a. Django installed successfully
+  b. I searched "what does pip install do" and found an article about how I should not do this! I should always pip install into something called a virtualenv. This is because pip automatically installs globally and this can cause some problems as versions of various dependencies change. I don't really understand this quite yet.
+2. pip list
+  a. Pip list displays a list of packages I've installed. Apparently this is just a list of everything installed in site-packages.
+3. pip install Django (again)
+  a. I don't get why I have to do this again.
+  b. Oh, ok, I see it. It's showing me WHERE pip is installing those packages.
+4. pip freeze
+  a. I don't know, pip freeze output looks a lot pip list output.
+  b. It turns out I can preserve requirements by saving the requirements list. The output format is what pip needs to be able to install the specific version of that requirement.
+  c. Pip freeze won't show the packages pip itself relies upon.
+5. pip freeze > requirements.txt
+  a. Creates that file with all of my installed packages and their versions.
+6. pip show Django
+  a. Shows information about an installed package.
+7. pip uninstall Django
+  a. Lists all the things that pip will uninstall when it removes the packages and asks for confirmation.
+8. pip search Flask
+  a. Returns a list of every package with Flask in the name or description.
