@@ -20,3 +20,6 @@ class Store(object):
 a = Store(product=['apples', 'strawberries', 'pineappe'], location='Mexico', owner='Noel')
 a.add_product('grapes')
 a.inventory()
+a.remove_product('grapes')
+a.inventory()
+a.remove_product('apples')
