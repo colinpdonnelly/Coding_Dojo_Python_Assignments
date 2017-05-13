@@ -1,5 +1,4 @@
-from flask import Flask, render_template, redirect, request, session
-import random
+from flask import Flask, render_template, redirect, request, session, flash
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -8,34 +7,29 @@ app.secret_key = 'secret_key'
 @app.route('/')
 def index():
 
-    if session.get('number') is None and session.get('text') is None:
-
-        session['number'] = random.randrange(0, 101)
-        session['text'] = ''
-
-    return render_template('index.html', text=session['text'])
+    return render_template('index.html')
 
 
-@app.route('/guess', methods=['POST'])
-def guess():
-    number = int(request.form['number'])
+@app.route('/result', methods=['POST'])
+def process():
+    name = request.form['name']
+    location = request.form['location']
+    language = request.form['language']
+    comment = request.form['comment']
 
-    if number < session['number']:
-        session['text'] = "low"
-    elif number > session['number']:
-        session['text'] = "high"
-    else:
-        session['text'] = "perfect"
+    if(len(name) < 1):
+        flash("Name cannot be empty!")
+        return redirect('/')
 
-    return redirect('/')
+    if(len(comment) < 1):
+        flash("Comment cannot be empty!")
+        return redirect('/')
 
+    if(len(comment) > 120):
+        flash("Comments can only be 120 characters.")
+        return redirect('/')
 
-@app.route('/reset', methods=['POST'])
-def reset():
-    session.pop('text')
-    session.pop('number')
-
-    return redirect('/')
+    return render_template('result.html', name=name, location=location, language=language, comment=comment)
 
 
-app.run(debug=True)
+app.run(debug=True)  # run our server
