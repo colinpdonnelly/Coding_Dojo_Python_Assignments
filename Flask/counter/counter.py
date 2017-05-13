@@ -17,7 +17,7 @@ def index():
 @app.route('/two')
 def plus_two():
     session['counter'] += 1
-    print 'counter is now {}'.format(session['counter'])
+    # print 'counter is now {}'.format(session['counter'])
     return redirect('/')
 
 
