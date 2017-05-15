@@ -8,14 +8,18 @@ app.secret_key = 'secret_key'
 @app.route('/')
 def index():
 
-    if session.get('number') is None and session.get('text') is None:
-
-        session['number'] = random.randrange(0, 10)
+    if 'number' not in session:
+        session['number'] = random.randrange(1, 100)
+    if 'text' not in session:
         session['text'] = ''
-        print session['number']
-        print session['text']
+    # if session.get('number') is None and session.get('text') is None:
+        #
+        # session['number'] = random.randrange(0, 10)
+        # session['text'] = ''
+        # print session['number']
+        # print session['text']
 
-    return render_template('index.html', text=session['text'])
+    return render_template('index.html')
 
 
 @app.route('/guess', methods=['POST'])

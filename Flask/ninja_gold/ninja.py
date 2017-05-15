@@ -10,7 +10,7 @@ app.secret_key = 'ninja_game'
 def index():
     if 'my_coins' not in session:
         session['my_coins'] = 0
-        print session['coin']
+        # print session['coin']
     if 'activity_log' not in session:
         session['activity_log'] = []
     return render_template('index.html')
