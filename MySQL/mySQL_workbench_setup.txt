@@ -1,0 +1,9 @@
+USE twitter
+SELECT * FROM tweets
+INSERT INTO tweets (tweet, user_id, created_at, updated_at)
+VALUES ('hello world', 1, NOW(), NOW())
+DELETE FROM tweets
+WHERE ID = 3
+UPDATE users SET
+First_name = ‘Frobe’
+WHERE id = 1
