@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Friends:</h1>
+        {% for friends in my_friends %}
+        <ul>
+            <li>Name: {{friends['name']}}</li>
+            <li>Age: {{friends['age']}}</li>
+            <li>Friends Since: {{friends['created_at']}}</li>
+        </ul>
+        {% endfor %}
+
+    <!-- append data here -->
+        <h1>Add a Friend:</h1>
+        <form action="/add" method="POST">
+            Name:<input type="text" name="fullname" value=""> <br>
+            Age: <input type="text" name="age" value=""><br>
+            <input type="hidden" name="created_at" value="created_at">
+            <input type="submit" name="submit" value="submit">
+        </form>
+    </body>
+</html>
