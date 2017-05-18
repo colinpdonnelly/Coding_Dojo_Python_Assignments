@@ -3,9 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
     </head>
     <body>
-        <form action="index.html" method="post">
+        {% with messages = get_flashed_messages(with_categories = true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class = {{ category }}>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/process" method="POST">
             Email Adrress: <input type="email" name="email">
             <input type="submit" name="submit" value="Submit">
         </form>
