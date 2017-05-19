@@ -8,8 +8,8 @@ mysql = MySQLConnector(app, 'full_friend')
 def index():
     friends = mysql.query_db("SELECT * FROM friends")
 
-    for friend in friends:
-        print friend['name']
+    # for friend in friends:
+    #     print friend['name']
     return render_template('index.html', my_friends=friends)
 
 
@@ -17,7 +17,7 @@ def index():
 def add():
     fullname = request.form['fullname']
     age = request.form['age']
-    since = request.form['created_at']
+    # since = request.form['created_at']
 
     query = "INSERT INTO friends (name, age) VALUES (:full_name, :my_age)"
 
