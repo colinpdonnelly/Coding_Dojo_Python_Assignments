@@ -1,0 +1,46 @@
+1. activate our django virtual environment.
+2. use django-admin to create our project.
+-- django-admin startproject main
+3. [optional] change the name of the external project folder.
+-- mv main my_project
+4. go into my_project
+-- cd my_project
+5. create an apps folder
+-- mkdir apps
+6. go into apps folder
+-- cd apps
+7. create __init__.py file in apps folder
+-- touch __init__.py
+8. run manage.py startapp command (which is back up one directory) to create our first app.
+-- python ../manage.py startapp first_app
+9. go back up to project folder
+-- cd ..
+10. add the app we just created to main/settings.py INSTALLED_APPS list
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'apps.first_app' #<--- this is new
+]
+11. include first_app.urls to main/urls.py
+from django.conf.urls import url, include # <-- this is new
+from django.contrib import admin
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^', include('apps.first_app.urls')) # <-- this is new too
+]
+12. create urls.py in apps/first_app
+from django.conf.urls import url
+import views
+urlpatterns = [
+    url(r'^$', views.index)
+]
+13. add view function to first_app/views.py
+def index(request):
+    return render('first_app/index.html')
+14. create templates folder in first_app/
+15. create index.html in first_app/templates/first_app
+16. python manage.py runserver

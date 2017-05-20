@@ -60,18 +60,9 @@ def register():
 
 @app.route('/wall')
 def wall():
-    email = request.form['email']
-    user_query = "SELECT * FROM users WHERE users.email = :email LIMIT 1"
-    query_data = {'email': email}
-    user = mysql.query_db(user_query, query_data)
-    if user[0] in session:
-        session['user'] = {
-            'id': user[0]['id']
-        }
-    # friends = mysql.query_db("SELECT * FROM friends")
     friends = mysql.query_db(
-        "SELECT messages.id, user_id, messages.message, DATE_FORMAT(messages.created_at, '%M %d, %Y %h:%i %p') AS 'timestamp', CONCAT(users.first_name, ' ', users.last_name) AS name FROM messages JOIN users ON messages.user_id = users.id ORDER BY messages.created_at DESC")
-
+        "SELECT messages.id, user_id, message, DATE_FORMAT(messages.created_at, '%M %d, %Y %h:%i %p') AS 'timestamp', CONCAT(users.first_name, ' ', users.last_name, ' ') AS name FROM messages JOIN users ON messages.user_id = users.id ORDER BY messages.created_at DESC")
+    print friends
     return render_template('wall.html', my_friends=friends)
 
 
@@ -121,7 +112,6 @@ def post():
             'my_id': unique_id,
             'my_messages': message
         }
-
         mysql.query_db(query, data)
 
     return redirect('/wall')

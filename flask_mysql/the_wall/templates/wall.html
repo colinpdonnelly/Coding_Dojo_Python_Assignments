@@ -22,8 +22,20 @@
         <form action="/logout" method="post">
             <input type="submit" name="logout" value="Log Out">
         </form>
+        <fieldset>
+            {% for friend in my_friends %}
+                <p>{{ friend['name']}} {{ friend['timestamp']}}</p>
+                <p>Message: {{ friend['message'] }}</p>
+            {% endfor %}
+        </fieldset>
+            <h1>Comment</h1>
+            <form action="/comment" method="POST">
+                <textarea name="comment" rows="10" cols="120"></textarea><br>
+                <input type="hidden" name="my_id" value= >
+                <input type="hidden" name="message_id" value=>
+                <input type="submit" name="submit_comment" value="Post">
+            </form>
 
-        {{ my_friends['messages.message'] }}
 
     </body>
 </html>
