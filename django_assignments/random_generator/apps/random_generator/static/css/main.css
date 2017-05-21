@@ -1,0 +1,16 @@
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+#random_word{
+    border: 5px solid black;
+    height: 100px;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.buttonHolder {
+    text-align: center;
+    margin-top: 20px;
+}

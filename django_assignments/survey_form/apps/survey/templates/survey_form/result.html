@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="">
+            <h2>Thanks for submitting this form! You have submitted this form {{request.session.attempt}} times now</h2>
+        </div>
+        <h1>My Name is: {{request.session.my_name}}</h1>
+        <h1>Coding Dojo Location: {{request.session.location}}</h1>
+        <h1>My favorite coding language: {{request.session.language}}</h1>
+        <h1>My Comment: {{request.session.comment}}</h1>
+    </body>
+</html>
