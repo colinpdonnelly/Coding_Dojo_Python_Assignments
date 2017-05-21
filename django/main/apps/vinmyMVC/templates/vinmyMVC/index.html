@@ -5,6 +5,12 @@
         <title></title>
     </head>
     <body>
-        <h1>Index Html Yay!</h1>
+        {{ request.session.name }}
+        <!-- <h1>Index Html Yay!</h1> -->
+        <form action="/new_user" method="post">
+            {% csrf_token %}
+            <input type="text" name="first_name" value="">
+            <input type="submit" name="" value="submit">
+        </form>
     </body>
 </html>

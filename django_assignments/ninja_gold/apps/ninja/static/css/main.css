@@ -1,0 +1,16 @@
+/*h1 {
+    color: blue;
+}*/
+
+#container{
+    max-width: 1000px;
+    height: auto;
+}
+
+.boxes {
+    display: inline-block;
+    height: 200px;
+    border: 5px solid black;
+    width: 200px;
+    text-align: center;
+}
