@@ -2,7 +2,11 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'portfolio/index.html')
+    context = {
+        'greeting': 'hello world',
+        'bye': 'goodbye world'
+    }
+    return render(request, 'portfolio/index.html', context)
     # Create your views here.
 
 

@@ -1,0 +1,29 @@
+/**{
+    margin: 0px;
+    padding: 0px;
+}*/
+
+h1 {
+    color: blue;
+}
+
+#header {
+    text-align: center;
+}
+
+.columns {
+    display: inline-block;
+    /*border: 1px solid black;*/
+    height: 200px;
+    width: 300px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 140px;
+    vertical-align: top;
+}
+
+.box {
+    border: 1px solid black;
+    height: 200px;
+    padding-top: 20px;
+}
