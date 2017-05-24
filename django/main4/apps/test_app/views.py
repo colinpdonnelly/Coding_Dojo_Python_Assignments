@@ -15,3 +15,9 @@ def blogs(request):
     Blog.objects.create(title=request.POST['title'], blog=request.POST['blog'])
     # insert into blogs (title, blog, created_at, updated_at) values (title, blog, now(), now())
     return redirect('/')
+
+
+def comments(request, id):
+    blog = Blog.objects.get(id=id)
+    Comment.objects.create(comment=request.POST['comment'], blog=blog)
+    return redirect('/')
