@@ -6,5 +6,11 @@
     </head>
     <body>
         <h1>Success</h1>
+        <h2>Welcome {{session['user_name']}}!</h2>
+        <h3>Post a new message</h3>
+        <form action="/messages" method="post">
+            <p>Content:<input type="text" name="content"></p>
+            <input type="submit" name="" value="">
+        </form>
     </body>
 </html>

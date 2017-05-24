@@ -61,9 +61,39 @@ def register():
                 'emale': request.form['email'],
                 'pw': hashed_password
             }
-            mysql.query_db(query_string, data)
+            created_user_id = mysql.query_db(query_string, data)
+            print created_user_id
+            session['user_id'] = created_user_id
+            query_string = "SELECT * FROM users WHERE id = :my_id"
+            data = {
+                'my_id': created_user_id
+            }
+            found_user = mysql.query_db(query_string, data)[0]
+            session['user_name'] = found_user['first_name']
             # insert into users table
             return redirect('/wall')
+
+
+@app.route('/login', methods=["POST"])
+def login():
+    query_string = "SELECT * FROM users WHERE email = :emale"
+    data = {
+        "emale": request.form['email']
+    }
+    found_users = mysql.query_db(query_string, data)
+    if found_users:
+        found_user = found_users[0]
+        input_password = md5.new(request.form['password']).hexdigest()
+        if input_password == found_user['password']:
+            session['user_name'] = found_user['first_name']
+            session['user_id'] = found_user['id']
+            return redirect('/wall')
+        else:
+            flash('Invalid Login')
+            return redirect('/')
+    else:
+        flash('Invalid Login')
+        return redirect('/')
 
 
 app.run(debug=True)
