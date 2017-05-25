@@ -14,8 +14,7 @@ def index(request):
 
 def register(request):
     if request.method == "POST":
-        errors = User.objects.validate(
-            first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'], password=request.POST['password'], pconfirm=request.POST['pconfirm'])
+        errors = User.objects.validate(request.POST)
         if errors:
             for error in errors:
                 messages.error(request, error)

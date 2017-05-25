@@ -2,23 +2,24 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import re
 
 
 class UserManager(models.Manager):
-    def validate(self, first_name, last_name, email, password, pconfirm):
+    def validate(self, post):
         errors = []
 
-        if len(first_name) < 2:
+        if len(post['first_name']) < 2:
             errors.append('First name must contain more than 2 characters')
-        if len(last_name) < 2:
+        if len(post['last_name']) < 2:
             errors.append('Last name must contain more than 2 characters')
-        if len(email) <= 0:
+        if len(post['email']) <= 0:
             errors.append('Please enter an email')
-        if len(password) < 8:
+        if len(post['password']) < 8:
             errors.append('Password must contain more than 8 characters')
-        if password != pconfirm:
+        if post['password'] != post['pconfirm']:
             errors.append('Please enter the same password')
-        check_email = self.filter(email=email)
+        check_email = self.filter(email=post['email'])
         if check_email:
             errors.append('Email already exists in the database.')
         return errors
